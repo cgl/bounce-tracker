@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
-import traceback, sys, re, getopt, datetime
+import traceback, sys, re, getopt, datetime, os
 
 def prepare_data(infile):
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M")
+    path = "data/"+timestamp+"/"
+    os.makedirs(path)
     logs = {}
     i = 0
     seen = False
@@ -24,9 +26,10 @@ def prepare_data(infile):
             seen = True
         i = i+1
 
+
     for dataType in logs:
       print dataType
-      f = open("data/"+timestamp+"/"+dataType+".log", "w")
+      f = open(path+dataType+".log", "w")
       for log in logs[dataType]:
         f.write(log+"\n")
       f.close()
