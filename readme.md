@@ -1,7 +1,7 @@
 # Bounce Tracker  (Lindy Hop-O-Meter)
 ======
 
-Bounce Traker is a set of R scripts that calculates if your bounces are down into the floor as they should ne in Lindy Hop.
+Bounce Traker is a set of R scripts that can asses body movements during dancing. We use mobile data collected with Sensor Log (https://play.google.com/store/apps/details?id=com.hfalan.activitylog) in order to assess bodily movements while dancing and give automatic feedback by comparing those movements to the norms of the dance.
 
 ## Getting Started
 
@@ -11,13 +11,12 @@ In your R shell or R.app first we change our directory. This is same as "cd boun
 
     > setwd(./bounceTracker)
     > source("bouncer.r")
-    
+
 To see the the names of the objects loaded you can use:
 
     > ls(envir=.GlobalEnv)
-    
+
 In order to get a summary of the bounce data:
 
     > statData(acc3)
     > statData(gravity3)
-
