@@ -20,3 +20,11 @@ In order to get a summary of the bounce data:
 
     > statData(acc3)
     > statData(gravity3)
+    
+To clean the head and tail of the data you can use:
+
+    > dataClean (yazılmadı henüz bu fonk)
+    
+For test we used the below function, when set to TRUE saves two PNGS into figs folder:
+
+    > dataCleanTest(TRUE)
