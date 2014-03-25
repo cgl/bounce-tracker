@@ -21,6 +21,29 @@ statData<-function(filename) {
 
  }
 
+dataClean<-function(filename) {
+   h.data = read.table(header=FALSE, filename, sep="|")
+   h.data$V3[500:(length(h.data$V3)-500)]
+}
+dataCleanTest<- function(save){
+  h3.slow = read.table(header=FALSE, gravity3, sep="|")
+  if(save)
+      png("figs/cleanupExample.png",width=1000,height=800,res=72)
+  par(mfrow=c(2,1))
+  plot(head(h3.slow$V3,n=1000), type="s", main="h3 slow song head noise")
+  plot(tail(h3.slow$V3,n=1000), type="s", main="h3 slow song tail noise")
+  if(save){
+    dev.off()
+    png("figs/cleanupExample_beforeAfter.png",width=1000,height=800,res=72)
+  }
+  par(mfrow=c(2,1))
+  plot(h3.slow$V3, type="s", main="h3 slow song first record")
+  plot(h3.slow$V3[500:(11027-500)], type="s", main="h3 slow song cleaned record")
+  length(h3.slow$V3[500:(11027-500)])
+  if(save)
+    dev.off()
+
+}
 # Change directory to our folder
 # setwd(./work/bounceTracker)
 
@@ -28,3 +51,21 @@ gravity3 = "data/20140325-1937-h3-cagil/3.ST_Gravity.log"
 acc3 = "data/20140325-1937-h3-cagil/3.3-axis_Accelerometer.log"
 
 # statData(acc3)
+
+rExamples<- function(){
+  getwd()
+  list.files(path = ".")
+}
+
+plotExamples<- function(){
+  plot(6:25,rnorm(20),type="b",xlim=c(1,30),ylim=c(-2.5,2.5),col=2)
+  par(new=T)
+  plot(rnorm(30),type="b",axes=F,col=3)
+  par(new=F)
+
+  upvar<-rnorm(10)+seq(1,1.9,by=0.1)
+  downvar<-rnorm(20)*5+19:10
+  par(mar=c(5,4,4,4))
+  plot(6:15,upvar,pch=1,col=3,xlim=c(1,20),xlab="Occasion",ylab="",main="Dual ordinate plot")
+  mtext("upvar",side=2,line=2,col=3)
+}

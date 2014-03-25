@@ -5,14 +5,14 @@ Bounce Traker is a set of R scripts that can asses body movements during dancing
 
 ## Getting Started
 
-Below are the instruction you can find to bootstrap.
+Below are the instructions you can use to bootstrap with our library.
 
-In your R shell or R.app first we change our directory. This is same as "cd bounceTracker" as in shell.
+In your R shell or R.app, first we need to change our directory. This is same as "cd bounceTracker" as in a unix shell. Then we will import the bounce library.
 
-    > setwd(./bounceTracker)
+    > setwd(bounceTracker)
     > source("bouncer.r")
 
-To see the the names of the objects loaded you can use:
+To see the the names of the objects and functions loaded with the bounce library you can use:
 
     > ls(envir=.GlobalEnv)
 
