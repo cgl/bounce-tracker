@@ -1,5 +1,5 @@
-# Bounce Tracker  (Aka. Lindy Hop-O-Meter)
-==========
+# Bounce Tracker  (Lindy Hop-O-Meter)
+======
 
 Bounce Traker is a set of R scripts that calculates if your bounces are down into the floor as they should ne in Lindy Hop.
 
