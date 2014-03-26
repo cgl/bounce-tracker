@@ -44,11 +44,39 @@ dataCleanTest<- function(save){
     dev.off()
 
 }
+
+dataCleanTestGeneric<- function(file,caption,save){
+  h3.song = read.table(header=FALSE, file, sep="|")
+  h3.ylim = c((min(h3.song$V3)-2),(max(h3.song$V3)+2))
+  if(save){
+    dataCaption <- paste(paste("figs/cleanupExample", caption, sep = "_"),"png", sep=".") # "figs/cleanupExample.png"
+    png(dataCaption,width=1000,height=800,res=72)
+    par(mfrow=c(2,1))
+    plot(head(h3.song$V3,n=1000), type="s", main="head noise")
+    plot(tail(h3.song$V3,n=1000), type="s", main="tail noise")
+    dev.off()
+  }
+  if(save){
+    dataCaption <- paste(paste("figs/cleanupExample_BA", caption, sep = "_"),"png", sep=".") # "figs/cleanupExample_beforeAfter.png"
+    png(dataCaption,width=1000,height=800,res=72)
+  }
+  par(mfrow=c(2,1))
+  plot(h3.song$V3, type="s", main="original record",xlim=c(1,length(h3.song$V3)),ylim=h3.ylim)
+  plot(h3.song$V3[500:(length(h3.song$V3)-500)], type="s", main="cleaned record", xlim=c(1,length(h3.song$V3)),ylim=h3.ylim)
+  if(save)
+    dev.off()
+
+
+}
 # Change directory to our folder
 # setwd(./work/bounceTracker)
 
-gravity3 = "data/20140325-1937-h3-cagil/3.ST_Gravity.log"
-acc3 = "data/20140325-1937-h3-cagil/3.3-axis_Accelerometer.log"
+gravity3 = "data/h3-preliminary/3.ST_Gravity.log"
+acc3 = "data/h3-preliminary/3.3-axis_Accelerometer.log"
+
+gravity4 = "data/h3-preliminary/4.ST_Gravity.log"
+acc4 = "data/h3-preliminary/4.3-axis_Accelerometer.log"
+
 
 # statData(acc3)
 
