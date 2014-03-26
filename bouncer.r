@@ -73,6 +73,7 @@ dataCleanTestGeneric<- function(file,caption,save){
 
 gravity3 = "data/h3-preliminary/3.ST_Gravity.log"
 acc3 = "data/h3-preliminary/3.3-axis_Accelerometer.log"
+linacc3 <- "data/h3-preliminary/3.ST_Linear_Acceleration.log"
 
 gravity4 = "data/h3-preliminary/4.ST_Gravity.log"
 acc4 = "data/h3-preliminary/4.3-axis_Accelerometer.log"
