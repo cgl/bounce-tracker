@@ -97,29 +97,39 @@ plotTogether <- function(file1,file2) {
 }
 
 plotThreeTogether <- function(file1,file2,file3) {
-    h.data1 <- read.table(header=FALSE, file1, sep="|", main=file1)
-    h.data2 <- read.table(header=FALSE, file2, sep="|", main=file2)
-    h.data3 <- read.table(header=FALSE, file3, sep="|", main=file3)
-    par(mfrow=c(2,1))
+    h.data1 <- read.table(header=FALSE, file1, sep="|")
+    h.data2 <- read.table(header=FALSE, file2, sep="|")
+    h.data3 <- read.table(header=FALSE, file3, sep="|")
     h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3),min(h.data3$V3))),max(c(max(h.data1$V3),max(h.data2$V3),max(h.data3$V3))))
     par(mfrow=c(3,1))
-    plot(h.data1$V3, type="s", main=file1,col=2)
-    plot(h.data2$V3, type="s", main=file2,col=3)
-    plot(h.data3$V3, type="s", main=file2,col=4)
+    plot(h.data1$V3, type="s", main=file1, col=2)
+    plot(h.data2$V3, type="s", main=file2, col=3)
+    plot(h.data3$V3, type="s", main=file3, col=4)
 }
 # Change directory to our folder
 # setwd(./work/bounceTracker)
+
+plotCenter <- function(file1){
+  h.data1 <- read.table(header=FALSE, file1, sep="|")
+  center = length(h.data1$V3)/2
+  plot(h.data1$V3[(center-200):(center+200)], type="s", main=file1, col=2)
+}
+
+plotCenterThree <- function(file1,file2,file3){
+  par(mfrow=c(3,1))
+  plotCenter(file1)
+  plotCenter(file2)
+  plotCenter(file3)
+}
 
 #-------------- Files ----------------------------------------
 
 # h2 ------------
 path = "data/ahter/"
 
-gravity1 = paste(path,"1.ST_Gravity.log",sep="")
-acc1 = paste(path,"1.3-axis_Accelerometer.log",sep="")
+gravity1 <- paste(path,"1.ST_Gravity.log",sep="")
+acc1 <- paste(path,"1.3-axis_Accelerometer.log",sep="")
 linacc1 <- paste(path,"1.ST_Linear_Acceleration.log", sep="")
-
-
 
 # h3 ------------
 path = "data/h3-preliminary/"
@@ -140,6 +150,14 @@ acc6 = paste(path,"6.3-axis_Accelerometer.log",sep="")
 
 path16 <- "data/h0-ters-duz/16."
 path17 <- "data/h0-ters-duz/17."
+
+acc16 = paste(path16,"3-axis_Accelerometer.log",sep="")
+linacc16 = paste(path16,"ST_Linear_Acceleration.log",sep="")
+
+# 11 bounce down 12 boune up
+path11 <- "data/h0-bounce-down-up/11."
+acc11 = paste(path11,"3-axis_Accelerometer.log",sep="")
+linacc11 = paste(path11,"ST_Linear_Acceleration.log",sep="")
 
 # 13|bounce down 15|bounce up
 
