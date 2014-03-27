@@ -4,7 +4,7 @@ import traceback, sys, re, getopt, datetime, os
 
 def prepare_data(infile):
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M")
-    path = "data/"+timestamp+"-"+infile.split(".")[0]+"/"
+    path = "data/"+timestamp+"-"+infile.split(".")[0].split("/")[1]+"/"
     os.makedirs(path)
     logs = {}
     i = 0

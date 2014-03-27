@@ -11,15 +11,38 @@ showPlot<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
 #  x11(width=1200, height=300)
   plot(my.rotation$V3, type="l", main=filename)
-  par(pin=c(800,300))
-
  }
+
 
 statData<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
   summary(my.rotation)
-
  }
+
+statDataV3<-function(filename) {
+  h.data <- read.table(header=FALSE, filename, sep="|")
+  h.cleaned <- h.data$V3[500:(length(h.data$V3)-500)]
+  summary(h.cleaned)
+ }
+
+returnData<-function(filename) {
+  my.rotation <- read.table(header=FALSE, filename, sep="|")
+  summary(my.rotation)
+  return(my.rotation)
+ }
+
+returnDataCleaned<-function(filename) {
+  h.data <- read.table(header=FALSE, filename, sep="|")
+  h.cleaned <- h.data$V3[500:(length(h.data$V3)-500)]
+  return(h.cleaned)
+ }
+
+
+
+cleanData <- function(collection) {
+  return(collection[500:(length(collection)-500)])
+}
+
 
 dataClean<-function(filename) {
    h.data = read.table(header=FALSE, filename, sep="|")
@@ -65,20 +88,69 @@ dataCleanTestGeneric<- function(file,caption,save){
   plot(h3.song$V3[500:(length(h3.song$V3)-500)], type="s", main="cleaned record", xlim=c(1,length(h3.song$V3)),ylim=h3.ylim)
   if(save)
     dev.off()
+}
 
+plotTogether <- function(file1,file2) {
+    h.data1 <- read.table(header=FALSE, file1, sep="|")
+    h.data2 <- read.table(header=FALSE, file2, sep="|")
+    par(mfrow=c(2,1))
+    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3))),max(c(min(h.data1$V3),min(h.data2$V3))))
+    plot(h.data1$V3, type="s", main=file1)
+    plot(h.data2$V3, type="s", main=file2)
+
+}
+
+
+plotThreeTogether <- function(file1,file2,file3) {
+    h.data1 <- read.table(header=FALSE, file1, sep="|")
+    h.data2 <- read.table(header=FALSE, file2, sep="|")
+    h.data3 <- read.table(header=FALSE, file3, sep="|")
+    par(mfrow=c(2,1))
+    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3),min(h.data3$V3))),max(c(max(h.data1$V3),max(h.data2$V3),max(h.data3$V3))))
+    par(mfrow=c(3,1))
+
+    plot(h.data1$V3, type="s", main=file1,col=2)
+
+    plot(h.data2$V3, type="s", main=file2,col=3)
+
+    plot(h.data2$V3, type="s", main=file2,col=4)
 
 }
 # Change directory to our folder
 # setwd(./work/bounceTracker)
 
+path = "data/h3-preliminary/"
 gravity3 = "data/h3-preliminary/3.ST_Gravity.log"
 acc3 = "data/h3-preliminary/3.3-axis_Accelerometer.log"
+
 linacc3 <- "data/h3-preliminary/3.ST_Linear_Acceleration.log"
+linacc4 <- paste(path,"4.ST_Linear_Acceleration.log", sep="")
+linacc6 <- paste(path,"6.ST_Linear_Acceleration.log", sep="")
 
 gravity4 = "data/h3-preliminary/4.ST_Gravity.log"
 acc4 = "data/h3-preliminary/4.3-axis_Accelerometer.log"
 
+gravity6 = paste(path,"6.ST_Gravity.log",sep="")
+acc6 = paste(path,"6.3-axis_Accelerometer.log",sep="")
 
+# 16 düz 17 ters
+
+path0 <- "data/h0-ters-duz/16."
+path1 <- "data/h0-ters-duz/17."
+
+# 13|bounce down 15|bounce up
+
+path0 <- "data/h0-ahter/13."
+path1 <- "data/h0-ahter/15."
+
+gravity0 = paste(path0,"ST_Gravity.log",sep="")
+gravity1 = paste(path1,"ST_Gravity.log",sep="")
+
+acc0 = paste(path0,"3-axis_Accelerometer.log",sep="")
+acc1 = paste(path1,"3-axis_Accelerometer.log",sep="")
+
+linacc0 = paste(path0,"ST_Linear_Acceleration.log",sep="")
+linacc1 = paste(path1,"ST_Linear_Acceleration.log",sep="")
 # statData(acc3)
 
 rExamples<- function(){
