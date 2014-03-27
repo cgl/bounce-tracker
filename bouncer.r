@@ -113,7 +113,7 @@ plotThreeTogether <- function(file1,file2,file3) {
 
     plot(h.data2$V3, type="s", main=file2,col=3)
 
-    plot(h.data2$V3, type="s", main=file2,col=4)
+    plot(h.data3$V3, type="s", main=file2,col=4)
 
 }
 # Change directory to our folder
