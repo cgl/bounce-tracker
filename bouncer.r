@@ -92,34 +92,56 @@ plotTogether <- function(file1,file2) {
     h.data2 <- read.table(header=FALSE, file2, sep="|")
     par(mfrow=c(2,1))
     h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3))),max(c(min(h.data1$V3),min(h.data2$V3))))
-    plot(h.data1$V3, type="s", main=file1)
-    plot(h.data2$V3, type="s", main=file2)
+    plot(h.data1$V3, type="l", main=file1)
+    plot(h.data2$V3, type="l", main=file2)
 }
-
+# plots files
 plotThreeTogether <- function(file1,file2,file3) {
     h.data1 <- read.table(header=FALSE, file1, sep="|")
     h.data2 <- read.table(header=FALSE, file2, sep="|")
     h.data3 <- read.table(header=FALSE, file3, sep="|")
     h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3),min(h.data3$V3))),max(c(max(h.data1$V3),max(h.data2$V3),max(h.data3$V3))))
     par(mfrow=c(3,1))
-    plot(h.data1$V3, type="s", main=file1, col=2)
-    plot(h.data2$V3, type="s", main=file2, col=3)
-    plot(h.data3$V3, type="s", main=file3, col=4)
+    plot(h.data1$V3, type="l", main=file1, col=2)
+    plot(h.data2$V3, type="l", main=file2, col=3)
+    plot(h.data3$V3, type="l", main=file3, col=4)
+}
+
+# plots vectore
+plotThreeVector <- function(vec1,vec2,vec3) {
+    h.ylim = c(min(c(min(vec1),min(vec2),min(vec3))),max(c(max(vec1),max(vec2),max(vec3))))
+    par(mfrow=c(3,1))
+    plot(vec1, type="l", col=2)
+    plot(vec2, type="l", col=3)
+    plot(vec3, type="l", col=4)
 }
 # Change directory to our folder
 # setwd(./work/bounceTracker)
 
-plotCenter <- function(file1){
+plotCenterFile <- function(file1){
   h.data1 <- read.table(header=FALSE, file1, sep="|")
   center = length(h.data1$V3)/2
-  plot(h.data1$V3[(center-200):(center+200)], type="s", main=file1, col=2)
+  plot(h.data1$V3[(center-200):(center+200)], type="l", main=file1, col=2)
 }
 
-plotCenterThree <- function(file1,file2,file3){
+plotCenterVector <- function(vec1,cap1){
+  center = length(vec1)/2
+  plot(vec1[(center-200):(center+200)], type="l", main=cap1)
+}
+
+plotCenterThreeFile <- function(file1,file2,file3){
   par(mfrow=c(3,1))
   plotCenter(file1)
   plotCenter(file2)
   plotCenter(file3)
+}
+
+# plots the vectors with captions
+plotCenterThreeVector <- function(file1,file2,file3,cap1,cap2,cap3){
+  par(mfrow=c(3,1))
+  plotCenterVector(file1,cap1)
+  plotCenterVector(file2,cap2)
+  plotCenterVector(file3,cap3)
 }
 
 #-------------- Files ----------------------------------------
@@ -153,11 +175,15 @@ path17 <- "data/h0-ters-duz/17."
 
 acc16 = paste(path16,"3-axis_Accelerometer.log",sep="")
 linacc16 = paste(path16,"ST_Linear_Acceleration.log",sep="")
+gravity16 = paste(path16,"ST_Gravity.log",sep="")
+
+linacc17 = paste(path17,"ST_Linear_Acceleration.log",sep="")
 
 # 11 bounce down 12 boune up
 path11 <- "data/h0-bounce-down-up/11."
 acc11 = paste(path11,"3-axis_Accelerometer.log",sep="")
 linacc11 = paste(path11,"ST_Linear_Acceleration.log",sep="")
+gravity11 = paste(path11,"ST_Gravity.log",sep="")
 
 # 13|bounce down 15|bounce up
 
@@ -173,6 +199,9 @@ acc15 = paste(path15,"3-axis_Accelerometer.log",sep="")
 linacc13 = paste(path13,"ST_Linear_Acceleration.log",sep="")
 linacc15 = paste(path15,"ST_Linear_Acceleration.log",sep="")
 # statData(acc3)
+
+#----------------------------
+
 
 
 #------------- Examples --------------------------------
