@@ -9,7 +9,7 @@ Below are the instructions you can use to bootstrap with our library.
 
 In your R shell or R.app, first we need to change our directory. This is same as "cd bounceTracker" as in a unix shell. Then we will import the bounce library.
 
-    > setwd(bounceTracker)
+    > setwd("bounceTracker")
     > source("bouncer.r")
 
 To see the the names of the objects and functions loaded with the bounce library you can use:
@@ -21,9 +21,9 @@ In order to get a summary of the bounce data:
     > statData(acc3)
     > statData(gravity3)
     
-To clean the head and tail of the data you can use:
+To clean the head and tail of the data you can use dataClean function. It strips 500 data points from both beginning and the end of the data coloumn named V3. 
 
-    > dataClean (yazılmadı henüz bu fonk)
+    > dataClean(filename)
     
 For test we used the below function, when set to TRUE saves two PNGS into figs folder:
 
