@@ -52,9 +52,9 @@ To clean the head and tail of the data you can use dataClean function. It strips
     > summary(cleaned_x)
         Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
     -17.7000  -2.3370  -0.4980  -0.5055   1.4560  14.6700 
-    
+
 Plotting a coloumn, file and vector are done by using:
-    
+
     > plotCollection(data_int_male3_p1, "x")
     > plotTwoCollections(data_int_male2_p1, data_int_male3_p1, "y")
     > plotTwoFiles(int_male2_p1, adv_male2_p1,"z")
@@ -62,6 +62,7 @@ Plotting a coloumn, file and vector are done by using:
     > plotThreeVector(data_int_male2_p1$mag, data_int_male2_p2$mag, data_int_male2_p3$mag) 
 
 If we only want to plot a small portion of the vector from the center with a given radius:
+
     > plotCenterFile(adv_male2_p1,"z",2000)
     > plotCenterThreeFile(adv_male2_p1,adv_male2_p2,adv_male2_p3,"z",2000)
     > plotCenterVector(data_adv_male2_p1$z,"Caption for adv male 2",2000)
