@@ -131,9 +131,9 @@ plotCenterVector <- function(vec1,cap1){
 
 plotCenterThreeFile <- function(file1,file2,file3){
   par(mfrow=c(3,1))
-  plotCenter(file1)
-  plotCenter(file2)
-  plotCenter(file3)
+  plotCenterFile(file1)
+  plotCenterFile(file2)
+  plotCenterFile(file3)
 }
 
 # plots the vectors with captions
