@@ -61,7 +61,14 @@ Plotting a coloumn, file and vector are done by using:
     > plotThreeFiles(int_male2_p1, int_male2_p2, int_male2_p3,"mag")
     > plotThreeVector(data_int_male2_p1$mag, data_int_male2_p2$mag, data_int_male2_p3$mag) 
 
+If we only want to plot a small portion of the vector from the center with a given radius:
+    > plotCenterFile(adv_male2_p1,"z",2000)
+    > plotCenterThreeFile(adv_male2_p1,adv_male2_p2,adv_male2_p3,"z",2000)
+    > plotCenterVector(data_adv_male2_p1$z,"Caption for adv male 2",2000)
+    > plotCenterThreeVector(data_adv_male2_p1$z, data_adv_male2_p2$z, data_adv_male2_p3$z, "p1", "p2", "p3", 2000)
+
     
+
 For test we used the below function, when set to TRUE saves two PNGS into figs folder:
 
     > dataCleanTest(TRUE)
