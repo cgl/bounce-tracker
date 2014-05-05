@@ -49,9 +49,9 @@ def detectBounce(points):
                              for l in range(k+1, k+50):
                                  if l < len(points) and checkBottom(l, points) and points[secondPeak]-points[l] > 5 and maxSecondDiff <= (points[secondPeak]-points[l]):
                                     maxSecondDiff = points[secondPeak]-points[l]
-                                    print "%d,%d,%d,%d,%d" % (leftBottom, firstPeak, rightBottom, secondPeak, l)
-                                    print "%f,%f,%f,%f,%f" % (points[leftBottom],points[firstPeak], points[rightBottom],points[secondPeak], points[l])
-                                    #print "%d=%f %d=%f %d=%f %d=%f %d=%f" % (leftBottom, points[leftBottom], firstPeak, points[firstPeak], rightBottom, points[rightBottom], secondPeak, points[secondPeak], l, points[l])
+                                    #print "%d,%d,%d,%d,%d" % (leftBottom, firstPeak, rightBottom, secondPeak, l)
+                                    #print "%f,%f,%f,%f,%f" % (points[leftBottom],points[firstPeak], points[rightBottom],points[secondPeak], points[l])
+                                    print "%d=%f %d=%f %d=%f %d=%f %d=%f" % (leftBottom, points[leftBottom], firstPeak, points[firstPeak], rightBottom, points[rightBottom], secondPeak, points[secondPeak], l, points[l])
                                     peakSeen = False
                                     for m in range(l+1, k+50):
                                         if m < len(points) and checkTip(m, points):
@@ -72,11 +72,12 @@ def detectBounce(points):
                 if peakSeen:
                     break
 points = []
-file = open("data/20140327-1205-/11.ST_Linear_Acceleration.log", 'r')
+#file = open("data/20140327-1205-/11.ST_Linear_Acceleration.log", 'r')
+file = open("pieces/24.BOSCH_BMA250_3-axis_Accelerometer.log.piece-2", 'r')
 lines = file.readlines()
 for line in lines:
    fields = line.split("|")
-   points.append(float(fields[2]))
+   points.append(float(fields[1]))
 
 print "%d points" % (len(points))
 detectBounce(points)

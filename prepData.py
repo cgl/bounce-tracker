@@ -14,10 +14,11 @@ def prepare_data(infile):
     for line in lines:
         if seen:
             line = re.sub("\n", "", line)
+            line = re.sub("\"", "", line)
             fields = line.split("|")
-            dataType = fields[0]+"."+re.sub(" ", "_", fields[1])
-            fields[2] = re.sub(",", "|", fields[2])
-            data = fields[1]+"|"+fields[2]+"|"+fields[3]
+            dataType = fields[1]+"."+re.sub(" ", "_", fields[2])
+            fields[4] = re.sub(",", "|", fields[4])
+            data = fields[2]+"|"+fields[4]+"|"+fields[5]
             data = re.sub(r"[\[\]]", "", data)
             if dataType not in logs:
                 logs[dataType] = []
