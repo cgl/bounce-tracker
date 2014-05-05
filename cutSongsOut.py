@@ -49,7 +49,7 @@ for dir in dirs:
                 lines = []
             elif std < 1 and pieceIndex == 1 and len(lines) < 1000:
                 lines = []
-            elif std < 1 and len(lines) < 10:
+            elif std < 2 and len(lines) < 50:
                 lines = []
             #print std
         f.close()

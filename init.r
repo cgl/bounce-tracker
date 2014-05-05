@@ -84,8 +84,31 @@ adv_male5_p1 = "pieces/32.BOSCH_BMA250_3-axis_Accelerometer.log.piece-1"
 adv_male5_p2 = "pieces/32.BOSCH_BMA250_3-axis_Accelerometer.log.piece-2"
 adv_male5_p3 = "pieces/32.BOSCH_BMA250_3-axis_Accelerometer.log.piece-3"
 
+######
 
-####
+l_adv_male1_p1 = "pieces/24.ST_Linear_Acceleration.log.piece-1"
+l_adv_male1_p2 = "pieces/24.ST_Linear_Acceleration.log.piece-2"
+l_adv_male1_p3 = "pieces/24.ST_Linear_Acceleration.log.piece-3"
+
+l_adv_male2_p1 = "pieces/28.ST_Linear_Acceleration.log.piece-1"
+l_adv_male2_p2 = "pieces/28.ST_Linear_Acceleration.log.piece-2"
+l_adv_male2_p3 = "pieces/28.ST_Linear_Acceleration.log.piece-3"
+
+l_adv_male3_p1 = "pieces/29.ST_Linear_Acceleration.log.piece-1"
+l_adv_male3_p2 = "pieces/29.ST_Linear_Acceleration.log.piece-2"
+l_adv_male3_p3 = "pieces/29.ST_Linear_Acceleration.log.piece-3"
+
+######
+
+l_int_male2_p1 = "pieces/21.ST_Linear_Acceleration.log.piece-1"
+l_int_male2_p2 = "pieces/21.ST_Linear_Acceleration.log.piece-2"
+l_int_male2_p3 = "pieces/21.ST_Linear_Acceleration.log.piece-3"
+
+l_int_male3_p1 = "pieces/22.ST_Linear_Acceleration.log.piece-1"
+l_int_male3_p2 = "pieces/22.ST_Linear_Acceleration.log.piece-2"
+l_int_male3_p3 = "pieces/22.ST_Linear_Acceleration.log.piece-3"
+
+######################################
 
 data_int_male2_p1 = returnData(int_male2_p1)
 data_int_male3_p1 = returnData(int_male3_p1)
