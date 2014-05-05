@@ -1,3 +1,101 @@
+# Documentation @ https://github.com/cgl/bounce-tracker/blob/master/readme.md
+# Change directory to our folder
+# setwd(./work/bounceTracker)
+
+returnData<-function(filename) {
+  my.rotation <- read.table(header=FALSE, filename, sep="|")
+  my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
+  result = data.frame( x=my.rotation$V2, y=my.rotation$V2, z=my.rotation$V4,  mag=my.rotation$mag)
+  result$name = strsplit(filename,"/")[[1]][2]
+  return(result)
+ }
+
+statData<-function(filename) {
+  my.rotation <- returnData(filename)
+  summary(my.rotation)
+ }
+
+cleanData <- function(collection) {
+  return(collection[500:(length(collection)-500)])
+}
+
+plotCollection<-function(data,col) {
+  plot(data[[col]], type="l", main=data$name[[1]])
+ }
+
+plotTwoCollections <- function(data1,data2, col) {
+    par(mfrow=c(2,1))
+    h.ylim = c(min(c(min(data1[[col]]),min(data2[[col]]))),max(c(min(data1[[col]]),min(data2[[col]]))))
+    plot(data1[[col]], type="l", main=data1$name[[1]])
+    plot(data2[[col]], type="l", main=data2$name[[1]],col=2)
+}
+
+# plots files
+plotTwoFiles <- function(file1,file2,col) {
+    h.data1 <- returnData(file1)
+    h.data2 <- returnData(file2)
+    h.ylim = c(min(c(min(h.data1[[col]]),min(h.data2[[col]]))),max(c(max(h.data1[[col]]),max(h.data2[[col]]))))
+    par(mfrow=c(2,1))
+    plot(h.data1[[col]], type="l", main=h.data1$name[[1]], col=2)
+    plot(h.data2[[col]], type="l", main=h.data2$name[[1]], col=3)
+}
+
+plotThreeFiles <- function(file1,file2,file3,col) {
+    h.data1 <- returnData(file1)
+    h.data2 <- returnData(file2)
+    h.data3 <- returnData(file3)
+    h.ylim = c(min(c(min(h.data1[[col]]),min(h.data2[[col]]),min(h.data3[[col]]))),max(c(max(h.data1[[col]]),max(h.data2[[col]]),max(h.data3[[col]]))))
+    par(mfrow=c(3,1))
+    plot(h.data1[[col]], type="l", main=h.data1$name[[1]], col=2)
+    plot(h.data2[[col]], type="l", main=h.data2$name[[1]], col=3)
+    plot(h.data3[[col]], type="l", main=h.data3$name[[1]], col=4)
+}
+
+
+# plots vectore
+plotThreeVector <- function(vec1,vec2,vec3) {
+    h.ylim = c(min(c(min(vec1),min(vec2),min(vec3))),max(c(max(vec1),max(vec2),max(vec3))))
+    par(mfrow=c(3,1))
+    plot(vec1, type="l", col=2)
+    plot(vec2, type="l", col=3)
+    plot(vec3, type="l", col=4)
+}
+
+
+plotCenterFile <- function(file1,col,radius){
+  h.data1 <- returnData(file1)
+  center = length(h.data1[[col]])/2
+  plot(h.data1[[col]][(center-radius):(center+radius)], type="l", main=h.data1$name[[1]], col=2)
+}
+
+plotCenterThreeFile <- function(file1,file2,file3,col,radius){
+  par(mfrow=c(3,1))
+  plotCenterFile(file1,col,radius)
+  plotCenterFile(file2,col,radius)
+  plotCenterFile(file3,col,radius)
+}
+
+plotCenterVector <- function(vec1,cap1,radius){
+  center = length(vec1)/2
+  plot(vec1[(center-radius):(center+radius)], type="l", main=cap1)
+}
+
+# plots the vectors with captions
+plotCenterThreeVector <- function(file1,file2,file3,cap1,cap2,cap3,radius){
+  par(mfrow=c(3,1))
+  plotCenterVector(file1,cap1,radius)
+  plotCenterVector(file2,cap2,radius)
+  plotCenterVector(file3,cap3,radius)
+}
+
+#-------------- Old funcs ----------------------------------------
+
+returnDataCleaned<-function(filename) {
+  h.data <- read.table(header=FALSE, filename, sep="|")
+  h.cleaned <- h.data$V3[500:(length(h.data$V3)-500)]
+  return(h.cleaned)
+ }
+
 printData<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
   my.jpegname = paste(filename,"png",sep=".")
@@ -6,40 +104,6 @@ printData<-function(filename) {
   plot(my.rotation$V3, type="l", main=filename)
   dev.off()
  }
-
-showPlot<-function(filename) {
-  my.rotation <- read.table(header=FALSE, filename, sep="|")
-  plot(my.rotation$V3, type="l", main=filename)
- }
-
-statData<-function(filename) {
-  my.rotation <- read.table(header=FALSE, filename, sep="|")
-  my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
-  summary(my.rotation)
- }
-
-statDataV3<-function(filename) {
-  h.data <- read.table(header=FALSE, filename, sep="|")
-  h.cleaned <- h.data$V3[500:(length(h.data$V3)-500)]
-  summary(h.cleaned)
- }
-
-returnData<-function(filename) {
-  my.rotation <- read.table(header=FALSE, filename, sep="|")
-  my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
-  summary(my.rotation)
-  return(my.rotation)
- }
-
-returnDataCleaned<-function(filename) {
-  h.data <- read.table(header=FALSE, filename, sep="|")
-  h.cleaned <- h.data$V3[500:(length(h.data$V3)-500)]
-  return(h.cleaned)
- }
-
-cleanData <- function(collection) {
-  return(collection[500:(length(collection)-500)])
-}
 
 dataClean<-function(filename) {
    h.data = read.table(header=FALSE, filename, sep="|")
@@ -88,72 +152,6 @@ dataCleanTestGeneric<- function(file,caption,save){
     dev.off()
 }
 
-
-plotTogether <- function(file1,file2) {
-    h.data1 <- read.table(header=FALSE, file1, sep="|")
-    h.data2 <- read.table(header=FALSE, file2, sep="|")
-    par(mfrow=c(2,1))
-    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3))),max(c(min(h.data1$V3),min(h.data2$V3))))
-    plot(h.data1$V3, type="l", main=file1)
-    plot(h.data2$V3, type="l", main=file2)
-}
-# plots files
-plotThreeTogether <- function(file1,file2,file3) {
-    h.data1 <- read.table(header=FALSE, file1, sep="|")
-    h.data2 <- read.table(header=FALSE, file2, sep="|")
-    h.data3 <- read.table(header=FALSE, file3, sep="|")
-    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3),min(h.data3$V3))),max(c(max(h.data1$V3),max(h.data2$V3),max(h.data3$V3))))
-    par(mfrow=c(3,1))
-    plot(h.data1$V3, type="l", main=file1, col=2)
-    plot(h.data2$V3, type="l", main=file2, col=3)
-    plot(h.data3$V3, type="l", main=file3, col=4)
-}
-
-plotTwoTogether <- function(file1,file2) {
-    h.data1 <- read.table(header=FALSE, file1, sep="|")
-    h.data2 <- read.table(header=FALSE, file2, sep="|")
-    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3))),max(c(max(h.data1$V3),max(h.data2$V3))))
-    par(mfrow=c(2,1))
-    plot(h.data1$V3, type="l", main=file1, col=2)
-    plot(h.data2$V3, type="l", main=file2, col=3)
-}
-
-# plots vectore
-plotThreeVector <- function(vec1,vec2,vec3) {
-    h.ylim = c(min(c(min(vec1),min(vec2),min(vec3))),max(c(max(vec1),max(vec2),max(vec3))))
-    par(mfrow=c(3,1))
-    plot(vec1, type="l", col=2)
-    plot(vec2, type="l", col=3)
-    plot(vec3, type="l", col=4)
-}
-# Change directory to our folder
-# setwd(./work/bounceTracker)
-
-plotCenterFile <- function(file1){
-  h.data1 <- read.table(header=FALSE, file1, sep="|")
-  center = length(h.data1$V3)/2
-  plot(h.data1$V3[(center-200):(center+200)], type="l", main=file1, col=2)
-}
-
-plotCenterVector <- function(vec1,cap1){
-  center = length(vec1)/2
-  plot(vec1[(center-200):(center+200)], type="l", main=cap1)
-}
-
-plotCenterThreeFile <- function(file1,file2,file3){
-  par(mfrow=c(3,1))
-  plotCenterFile(file1)
-  plotCenterFile(file2)
-  plotCenterFile(file3)
-}
-
-# plots the vectors with captions
-plotCenterThreeVector <- function(file1,file2,file3,cap1,cap2,cap3){
-  par(mfrow=c(3,1))
-  plotCenterVector(file1,cap1)
-  plotCenterVector(file2,cap2)
-  plotCenterVector(file3,cap3)
-}
 
 #-------------- Files ----------------------------------------
 

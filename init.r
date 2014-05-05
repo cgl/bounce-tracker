@@ -85,3 +85,38 @@ adv_male5_p2 = "pieces/32.BOSCH_BMA250_3-axis_Accelerometer.log.piece-2"
 adv_male5_p3 = "pieces/32.BOSCH_BMA250_3-axis_Accelerometer.log.piece-3"
 
 
+####
+
+data_int_male2_p1 = returnData(int_male2_p1)
+data_int_male3_p1 = returnData(int_male3_p1)
+data_int_male4_p1 = returnData(int_male4_p1)
+data_int_male5_p1 = returnData(int_male5_p1)
+
+data_int_male2_p2 = returnData(int_male2_p2)
+data_int_male3_p2 = returnData(int_male3_p2)
+data_int_male4_p2 = returnData(int_male4_p2)
+data_int_male5_p2 = returnData(int_male5_p2)
+
+data_int_male2_p3 = returnData(int_male2_p3)
+data_int_male3_p3 = returnData(int_male3_p3)
+data_int_male4_p3 = returnData(int_male4_p3)
+data_int_male5_p3 = returnData(int_male5_p3)
+
+
+data_adv_male1_p1 = returnData(adv_male1_p1)
+data_adv_male2_p1 = returnData(adv_male2_p1)
+data_adv_male3_p1 = returnData(adv_male3_p1)
+data_adv_male4_p1 = returnData(adv_male4_p1)
+data_adv_male5_p1 = returnData(adv_male5_p1)
+
+data_adv_male1_p2 = returnData(adv_male1_p2)
+data_adv_male2_p2 = returnData(adv_male2_p2)
+data_adv_male3_p2 = returnData(adv_male3_p2)
+data_adv_male4_p2 = returnData(adv_male4_p2)
+data_adv_male5_p2 = returnData(adv_male5_p2)
+
+data_adv_male1_p3 = returnData(adv_male1_p3)
+data_adv_male2_p3 = returnData(adv_male2_p3)
+data_adv_male3_p3 = returnData(adv_male3_p3)
+data_adv_male4_p3 = returnData(adv_male4_p3)
+data_adv_male5_p3 = returnData(adv_male5_p3)
