@@ -24,8 +24,8 @@ for dir in dirs:
   if re.search("set$", dir):
     files = listdir_fullpath(dir)
     for file in files:
-      if re.search("3-axis_Acce", file):
-#      if re.search("Linear_Acceleration", file):
+#      if re.search("3-axis_Acce", file):
+      if re.search("Linear_Acceleration", file):
         last = []
         lines = []
         print file
@@ -49,7 +49,7 @@ for dir in dirs:
                 lines = []
             elif std < 1 and pieceIndex == 1 and len(lines) < 1000:
                 lines = []
-            elif std < 1 and len(lines) < 10:
+            elif std < 2 and len(lines) < 50:
                 lines = []
             #print std 
         f.close()
