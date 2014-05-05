@@ -14,6 +14,7 @@ showPlot<-function(filename) {
 
 statData<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
+  my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
   summary(my.rotation)
  }
 
@@ -25,6 +26,7 @@ statDataV3<-function(filename) {
 
 returnData<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
+  my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
   summary(my.rotation)
   return(my.rotation)
  }
@@ -107,6 +109,15 @@ plotThreeTogether <- function(file1,file2,file3) {
     plot(h.data3$V3, type="l", main=file3, col=4)
 }
 
+plotTwoTogether <- function(file1,file2) {
+    h.data1 <- read.table(header=FALSE, file1, sep="|")
+    h.data2 <- read.table(header=FALSE, file2, sep="|")
+    h.ylim = c(min(c(min(h.data1$V3),min(h.data2$V3))),max(c(max(h.data1$V3),max(h.data2$V3))))
+    par(mfrow=c(2,1))
+    plot(h.data1$V3, type="l", main=file1, col=2)
+    plot(h.data2$V3, type="l", main=file2, col=3)
+}
+
 # plots vectore
 plotThreeVector <- function(vec1,vec2,vec3) {
     h.ylim = c(min(c(min(vec1),min(vec2),min(vec3))),max(c(max(vec1),max(vec2),max(vec3))))
@@ -131,9 +142,9 @@ plotCenterVector <- function(vec1,cap1){
 
 plotCenterThreeFile <- function(file1,file2,file3){
   par(mfrow=c(3,1))
-  plotCenter(file1)
-  plotCenter(file2)
-  plotCenter(file3)
+  plotCenterFile(file1)
+  plotCenterFile(file2)
+  plotCenterFile(file3)
 }
 
 # plots the vectors with captions
