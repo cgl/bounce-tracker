@@ -77,7 +77,7 @@ def savePeaks():
       print file
       peaks = getPeaks(file)
 
-      w = open("%s.points" % (dir), "w")
+      w = open("%s.points" % (file), "w")
       for i in range(1, len(peaks)-1):
         if peaks[i-1][4] > peaks[i][4] and peaks[i][1]-peaks[i-1][1] < 20:
           w.write("%d %f\n" % (peaks[i][0], peaks[i][3]))
@@ -125,5 +125,5 @@ def getPeakMatrix():
         for dancerIndex in arr[level][gender][pieceIndex]:
            print "         %s\t%d" % (dancerIndex, arr[level][gender][pieceIndex][dancerIndex])
 
-getPeakMatrix()
-#savePeaks()
+#getPeakMatrix()
+savePeaks()
