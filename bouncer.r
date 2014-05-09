@@ -5,7 +5,7 @@
 returnData<-function(filename) {
   my.rotation <- read.table(header=FALSE, filename, sep="|")
   my.rotation$mag = sqrt(my.rotation$V2^2 + my.rotation$V3^2 + my.rotation$V4^2)
-  result = data.frame( x=my.rotation$V2, y=my.rotation$V2, z=my.rotation$V4,  mag=my.rotation$mag)
+  result = data.frame( x=my.rotation$V2, y=my.rotation$V3, z=my.rotation$V4,  mag=my.rotation$mag)
   result$name = strsplit(filename,"/")[[1]][2]
   return(result)
  }
