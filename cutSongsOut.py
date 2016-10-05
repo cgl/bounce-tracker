@@ -24,8 +24,8 @@ for dir in dirs:
   if re.search("set$", dir):
     files = listdir_fullpath(dir)
     for file in files:
-#      if re.search("3-axis_Acce", file):
-      if re.search("Linear_Acceleration", file):
+      if re.search("3-axis_Acce", file):
+#      if re.search("Linear_Acceleration", file):
         last = []
         lines = []
         print file
